@@ -90,7 +90,12 @@ const SignUpPage = () => {
 
   return (
     <div className="content">
-      <h1>Sign Up</h1>
+      <div className="flex_column">
+        <h1>Sign Up</h1>
+        <p>
+          Create an account and start creating your list of favourite Pokémon!
+        </p>
+      </div>
       <form className="flex_column custom_form">
         <input
           id="username"

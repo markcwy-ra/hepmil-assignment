@@ -10,6 +10,7 @@ const SearchPage = () => {
   const [query, setQuery] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [pokeData, setPokeData] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleInput = (e) => {
     setErrorMessage(null);
@@ -19,6 +20,7 @@ const SearchPage = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     setPokeData([]);
+    setIsSearching(true);
     setErrorMessage(null);
     if (query) {
       if (isValidPokeSearch(query)) {
@@ -26,19 +28,24 @@ const SearchPage = () => {
         try {
           const response = await fetchPokemon(formattedQuery);
           setPokeData([response]);
+          setIsSearching(false);
         } catch {
           try {
             const response = await fetchPokemonSpecies(query);
             setPokeData(response);
+            setIsSearching(false);
           } catch {
             setErrorMessage("Not found");
+            setIsSearching(false);
           }
         }
       } else {
         setErrorMessage("Invalid characters detected!");
+        setIsSearching(false);
       }
     } else {
       setErrorMessage("Please input search term!");
+      setIsSearching(false);
     }
   };
 
@@ -56,6 +63,7 @@ const SearchPage = () => {
             placeholder="Enter Pokémon name or Pokédex no:"
           />
         </form>
+        {isSearching ? <h4>Searching database...</h4> : <></>}
         {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
 
         <div className="search__results">

@@ -26,7 +26,7 @@ const HomePage = () => {
       <h1>Welcome to PokéFaves!</h1>
 
       <div className="flex_column home__pokemon">
-        <h4>Random Pokémon:</h4>
+        <h4>Pokédex Entry #{pokeNumber}</h4>
         <PokeCard pokeData={pokeData} />
         <button onClick={handleRandomPoke}>
           <h5>Another Pokémon please!</h5>

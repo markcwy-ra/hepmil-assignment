@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { titleCase } from "../../Utilities/utils";
 import TypeTag from "../../Pieces/TypeTag/TypeTag";
 import "./PokeCard.css";
 import FavouriteButton from "../../Pieces/FavouriteButton/FavouriteButton";
+import { UserContext } from "../../Outlets/MainOutlet";
 
 const PokeCard = ({ pokeData, config = "default" }) => {
+  const { user } = useContext(UserContext);
   if (pokeData) {
     const { name, photoUrl, types } = pokeData;
     if (config === "default") {
@@ -12,12 +14,12 @@ const PokeCard = ({ pokeData, config = "default" }) => {
         <div className={`poke_card poke_card__default`}>
           <h2>{titleCase(name)}</h2>
           <img src={photoUrl} alt={name} />
-          <div className="flex_row poke_card_types__default">
+          <div className="poke_card_types__default">
             {types.map((type) => (
               <TypeTag key={type.type.name} type={type.type.name} />
             ))}
           </div>
-          <FavouriteButton pokeData={pokeData} />
+          {user.uid ? <FavouriteButton pokeData={pokeData} /> : <></>}
         </div>
       );
     } else {
@@ -28,12 +30,12 @@ const PokeCard = ({ pokeData, config = "default" }) => {
             <h3>{titleCase(name)}</h3>
           </div>
           <div className="flex_row ">
-            <div className="flex_column poke_card_types__default">
+            <div className="poke_card_types__list">
               {types.map((type) => (
                 <TypeTag key={type.type.name} type={type.type.name} />
               ))}
             </div>
-            <FavouriteButton pokeData={pokeData} />
+            {user.uid ? <FavouriteButton pokeData={pokeData} /> : <></>}
           </div>
         </div>
       );

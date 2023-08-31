@@ -31,7 +31,10 @@ const LoginPage = () => {
   };
   return (
     <div className="content">
-      <h1>Login</h1>
+      <div className="flex_column">
+        <h1>Login</h1>
+        <p>Sign in to manage your favourite Pokémon!</p>
+      </div>
       <form className="flex_column custom_form">
         <input
           id="email"

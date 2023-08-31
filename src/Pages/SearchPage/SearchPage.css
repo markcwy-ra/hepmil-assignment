@@ -15,3 +15,7 @@
   width: 100%;
   gap: var(--element-padding);
 }
+
+.search__results::-webkit-scrollbar {
+  display: none;
+}
