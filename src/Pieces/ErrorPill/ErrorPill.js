@@ -1,8 +1,9 @@
 import React from "react";
+import "./ErrorPill.css";
 
 const ErrorPill = ({ errorMessage }) => {
   return (
-    <div>
+    <div className="error_pill">
       <p>{errorMessage}</p>
     </div>
   );

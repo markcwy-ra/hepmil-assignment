@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import "./SearchPage.css";
-import axios from "axios";
 import ErrorPill from "../../Pieces/ErrorPill/ErrorPill";
-import {
-  fetchPokemon,
-  fetchPokemonSpecies,
-  formatSearchQuery,
-  isValidPokeSearch,
-} from "../../utils";
+import { formatSearchQuery, isValidPokeSearch } from "../../Utilities/utils";
+import { fetchPokemon, fetchPokemonSpecies } from "../../Utilities/fetch";
 import PokeCard from "../../Parts/PokeCard/PokeCard";
+import Header from "../../Parts/Header/Header";
 
 const SearchPage = () => {
   const [query, setQuery] = useState("");
@@ -22,6 +18,7 @@ const SearchPage = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    setPokeData([]);
     setErrorMessage(null);
     if (query) {
       if (isValidPokeSearch(query)) {
@@ -46,21 +43,27 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="content">
-      <h1>Search</h1>
-      <form className="search__form" onSubmit={handleSearch}>
-        <h4>Enter Pokémon name or Pokédex no:</h4>
-        <input type="text" value={query} onChange={handleInput} />
-      </form>
-      {pokeData ? (
-        pokeData.map((pokemon) => (
-          <PokeCard key={pokemon.name} pokeData={pokemon} />
-        ))
-      ) : (
-        <></>
-      )}
-      {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
-    </div>
+    <>
+      <Header>
+        <h1>Search</h1>
+      </Header>
+      <div className="content">
+        <form className="search__form" onSubmit={handleSearch}>
+          <h4>Enter Pokémon name or Pokédex no:</h4>
+          <input type="text" value={query} onChange={handleInput} />
+        </form>
+        <div className="search__results">
+          {pokeData ? (
+            pokeData.map((pokemon) => (
+              <PokeCard key={pokemon.name} pokeData={pokemon} config="list" />
+            ))
+          ) : (
+            <></>
+          )}
+        </div>
+        {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
+      </div>
+    </>
   );
 };
 

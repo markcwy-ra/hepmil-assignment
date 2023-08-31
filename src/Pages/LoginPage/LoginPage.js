@@ -23,9 +23,9 @@ const LoginPage = () => {
     }
   };
   return (
-    <div>
+    <div className="content">
       <h1>Login</h1>
-      <form>
+      <form className="flex_column custom_form">
         <input
           id="email"
           type="email"
@@ -43,7 +43,7 @@ const LoginPage = () => {
           placeholder="Enter password"
         />
         {isLoggingIn ? (
-          <h3>Logging In...</h3>
+          <h4>Logging In...</h4>
         ) : (
           <button onClick={handleLogin} id="login">
             Login
@@ -51,10 +51,12 @@ const LoginPage = () => {
         )}
         {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
       </form>
-      <p>Don't have an account?</p>
-      <button onClick={() => navigate("/signup")} id="signup">
-        Sign Up
-      </button>
+      <div className="flex_column">
+        <p>Don't have an account?</p>
+        <button onClick={() => navigate("/signup")} id="signup">
+          Sign Up
+        </button>
+      </div>
     </div>
   );
 };

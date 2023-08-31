@@ -18,19 +18,19 @@ const NavBar = () => {
 
   return (
     <div className="navbar">
-      <h3 onClick={handleNavigate} id="home">
-        PokeFaves
+      <h3 className="clickable" onClick={handleNavigate} id="home">
+        PokéFaves
       </h3>
       <div className="navbar__links">
-        <h4 onClick={handleNavigate} id="search">
+        <h4 className="clickable" onClick={handleNavigate} id="search">
           Search
         </h4>
-        {user.uid ? (
-          <h4 onClick={handleNavigate} id="favourites">
+        {user.uid && user.username ? (
+          <h4 className="clickable" onClick={handleNavigate} id="favourites">
             {user.username}
           </h4>
         ) : (
-          <h4 onClick={handleNavigate} id="login">
+          <h4 className="clickable" onClick={handleNavigate} id="login">
             Login
           </h4>
         )}

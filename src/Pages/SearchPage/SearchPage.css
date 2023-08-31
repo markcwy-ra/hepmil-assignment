@@ -4,3 +4,11 @@
   align-items: center;
   gap: var(--element-padding);
 }
+
+.search__results {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  gap: var(--element-padding);
+}

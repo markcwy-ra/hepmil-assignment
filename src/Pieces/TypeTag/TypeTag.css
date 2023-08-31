@@ -4,7 +4,7 @@
   border-radius: 3px;
   text-transform: uppercase;
   width: 90px;
-  border: 1px solid rgb(122, 122, 122);
+  border: 1px solid rgb(214, 214, 214);
 }
 
 .bug {
@@ -43,6 +43,7 @@
 }
 
 .ghost {
+  color: white;
   background-color: rgb(77, 3, 145);
 }
 

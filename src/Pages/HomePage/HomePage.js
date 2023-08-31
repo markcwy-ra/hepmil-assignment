@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PokeCard from "../../Parts/PokeCard/PokeCard";
-import { fetchPokemon, randomNumber } from "../../utils";
+import { randomNumber } from "../../Utilities/utils";
 import "./HomePage.css";
+import { fetchPokemon } from "../../Utilities/fetch";
 
 const HomePage = () => {
   const [pokeData, setPokeData] = useState(null);
@@ -24,11 +25,11 @@ const HomePage = () => {
     <div className="content">
       <h1>Welcome to PokéFaves!</h1>
 
-      <div className="home__pokemon">
+      <div className="flex_column home__pokemon">
         <h4>Random Pokémon:</h4>
         <PokeCard pokeData={pokeData} />
         <button onClick={handleRandomPoke}>
-          Give me another random Pokémon
+          <h5>Another Pokémon please!</h5>
         </button>
       </div>
     </div>

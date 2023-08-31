@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 // ----- Firebase ----- //
 
-import { get, ref, set } from "firebase/database";
+import { get, ref } from "firebase/database";
 import { auth, database } from "../../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
@@ -11,7 +11,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import { UserContext } from "../../Outlets/MainOutlet";
 import signUpReducer from "../../Reducers/signUpReducer";
-import { onlyAlphaNumeric } from "../../utils";
+import { onlyAlphaNumeric } from "../../Utilities/utils";
 import ErrorPill from "../../Pieces/ErrorPill/ErrorPill";
 
 // ----- Initial Declarations ----- //
@@ -31,6 +31,7 @@ const SignUpPage = () => {
 
   const [formState, dispatch] = useReducer(signUpReducer, initialForm);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isSigningUp, setIsSigningUp] = useState(false);
 
   const handleForm = (e) => {
     setErrorMessage(null);
@@ -53,6 +54,7 @@ const SignUpPage = () => {
     } else if (!passwordCheck) {
       setErrorMessage("Passwords don't match!");
     } else {
+      setIsSigningUp(true);
       const userRef = ref(
         database,
         "users/" + formState.username.toLowerCase()
@@ -69,31 +71,27 @@ const SignUpPage = () => {
           await updateProfile(auth.currentUser, {
             displayName: formState.username,
           });
-          setUser((user) => {
-            const userDetails = {
-              username: formState.username,
-              email: formState.email,
-            };
-            set(userRef, userDetails);
-            return {
-              ...user,
-              username: formState.username,
-            };
-          });
+          setUser((user) => ({
+            ...user,
+            username: formState.username,
+          }));
+          setIsSigningUp(false);
           navigate("/");
         } catch {
+          setIsSigningUp(false);
           setErrorMessage("Email already in use.");
         }
       } else {
+        setIsSigningUp(false);
         setErrorMessage("Username already exists.");
       }
     }
   };
 
   return (
-    <div>
+    <div className="content">
       <h1>Sign Up</h1>
-      <form>
+      <form className="flex_column custom_form">
         <input
           id="username"
           type="text"
@@ -126,9 +124,20 @@ const SignUpPage = () => {
           autoComplete="new-password"
           placeholder="Re-enter password"
         />
-        <button onClick={handleSubmit}>Sign Up</button>
+        {isSigningUp ? (
+          <h4>Creating Account...</h4>
+        ) : (
+          <button onClick={handleSubmit}>Sign Up</button>
+        )}
+
         {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
       </form>
+      <div className="flex_column">
+        <p>Already have an account?</p>
+        <button onClick={() => navigate("/signup")} id="signup">
+          Login
+        </button>
+      </div>
     </div>
   );
 };
