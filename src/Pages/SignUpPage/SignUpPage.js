@@ -98,7 +98,7 @@ const SignUpPage = () => {
           value={formState.username}
           onChange={(e) => handleForm(e)}
           autoComplete="off"
-          placeholder="Enter Username"
+          placeholder="Enter username"
         />
         <input
           id="email"
@@ -127,7 +127,9 @@ const SignUpPage = () => {
         {isSigningUp ? (
           <h4>Creating Account...</h4>
         ) : (
-          <button onClick={handleSubmit}>Sign Up</button>
+          <button onClick={handleSubmit}>
+            <h5>Sign Up</h5>
+          </button>
         )}
 
         {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
@@ -135,7 +137,7 @@ const SignUpPage = () => {
       <div className="flex_column">
         <p>Already have an account?</p>
         <button onClick={() => navigate("/signup")} id="signup">
-          Login
+          <h5>Login</h5>
         </button>
       </div>
     </div>

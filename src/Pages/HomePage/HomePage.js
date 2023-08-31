@@ -22,7 +22,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="content">
+    <div className="content home">
       <h1>Welcome to PokéFaves!</h1>
 
       <div className="flex_column home__pokemon">

@@ -19,6 +19,7 @@ body #root {
   --content-padding: 20px;
   --element-padding: 10px;
   --element-padding-large: 30px;
+  --tag-padding: 5px;
   --blue: #4797f2;
   --blue-dark: #246fc4;
   --red: #e3534a;
@@ -54,6 +55,15 @@ h4,
 h5 {
   text-transform: uppercase;
   letter-spacing: 0.15em;
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 25px;
+  }
 }
 
 input {
@@ -114,6 +124,12 @@ button:hover {
 .flex_column {
   display: flex;
   flex-direction: column;
+  gap: var(--element-padding);
+  align-items: center;
+}
+
+.flex_row {
+  display: flex;
   gap: var(--element-padding);
   align-items: center;
 }

@@ -13,13 +13,20 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErrorMessage(null);
     try {
       setIsLoggingIn(true);
       await signInWithEmailAndPassword(auth, email, password);
       setIsLoggingIn(false);
       navigate("/favourites");
-    } catch {
-      setErrorMessage("We had trouble logging you in. Please try again!");
+    } catch (err) {
+      setIsLoggingIn(false);
+      const error = err.code;
+      if (error === "auth/user-not-found") {
+        setErrorMessage("User not found!");
+      } else {
+        setErrorMessage("Please try again!");
+      }
     }
   };
   return (
@@ -46,7 +53,7 @@ const LoginPage = () => {
           <h4>Logging In...</h4>
         ) : (
           <button onClick={handleLogin} id="login">
-            Login
+            <h5>Login</h5>
           </button>
         )}
         {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
@@ -54,7 +61,7 @@ const LoginPage = () => {
       <div className="flex_column">
         <p>Don't have an account?</p>
         <button onClick={() => navigate("/signup")} id="signup">
-          Sign Up
+          <h5>Sign Up</h5>
         </button>
       </div>
     </div>

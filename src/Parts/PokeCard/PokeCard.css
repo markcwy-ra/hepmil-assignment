@@ -31,8 +31,7 @@
   width: 50px;
 }
 
-.poke_card__types {
-  display: flex;
-
-  gap: 5px;
+.poke_card_types__default,
+.poke_card_types__list {
+  gap: var(--tag-padding);
 }

@@ -27,9 +27,11 @@ const FavouritesPage = () => {
     <>
       <Header>
         <h2>@{user.username}</h2>
-        <button onClick={handleLogOut}>Log Out</button>
+        <button onClick={handleLogOut}>
+          <h5>Log Out</h5>
+        </button>
       </Header>
-      <div className="content">
+      <div className="favourites">
         {userPokemon && Object.keys(userPokemon).length ? (
           <div className="favourites__list">
             {Object.entries(userPokemon).map(([key, data]) => {

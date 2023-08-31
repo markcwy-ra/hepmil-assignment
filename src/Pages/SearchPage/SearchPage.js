@@ -47,11 +47,17 @@ const SearchPage = () => {
       <Header>
         <h1>Search</h1>
       </Header>
-      <div className="content">
-        <form className="search__form" onSubmit={handleSearch}>
-          <h4>Enter Pokémon name or Pokédex no:</h4>
-          <input type="text" value={query} onChange={handleInput} />
+      <div className="search flex_column">
+        <form className="flex_column search__form" onSubmit={handleSearch}>
+          <input
+            type="text"
+            value={query}
+            onChange={handleInput}
+            placeholder="Enter Pokémon name or Pokédex no:"
+          />
         </form>
+        {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
+
         <div className="search__results">
           {pokeData ? (
             pokeData.map((pokemon) => (
@@ -61,7 +67,6 @@ const SearchPage = () => {
             <></>
           )}
         </div>
-        {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
       </div>
     </>
   );
