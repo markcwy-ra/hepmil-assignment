@@ -18,9 +18,9 @@ const PokeCard = ({ pokeData, config = "default" }) => {
     const { name, photoUrl, types } = pokeData;
     if (config === "default") {
       return (
-        <div className={`poke_card poke_card__default`} onClick={handleClick}>
-          <h2>{titleCase(name)}</h2>
-          <img src={photoUrl} alt={name} />
+        <div className={`poke_card poke_card__default`}>
+          <h2 onClick={handleClick}>{titleCase(name)}</h2>
+          <img onClick={handleClick} src={photoUrl} alt={name} />
           <div className="poke_card_types__default">
             {types.map((type) => (
               <TypeTag key={type.type.name} type={type.type.name} />
@@ -31,8 +31,8 @@ const PokeCard = ({ pokeData, config = "default" }) => {
       );
     } else {
       return (
-        <div className={`poke_card poke_card__list`} onClick={handleClick}>
-          <div className="flex_row">
+        <div className={`poke_card poke_card__list`}>
+          <div onClick={handleClick} className="flex_row">
             <img src={photoUrl} alt={name} />
             <h3>{titleCase(name)}</h3>
           </div>
