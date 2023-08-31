@@ -4,14 +4,21 @@ import TypeTag from "../../Pieces/TypeTag/TypeTag";
 import "./PokeCard.css";
 import FavouriteButton from "../../Pieces/FavouriteButton/FavouriteButton";
 import { UserContext } from "../../Outlets/MainOutlet";
+import { useNavigate } from "react-router-dom";
 
 const PokeCard = ({ pokeData, config = "default" }) => {
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/pokemon/" + pokeData.name);
+  };
+
   if (pokeData) {
     const { name, photoUrl, types } = pokeData;
     if (config === "default") {
       return (
-        <div className={`poke_card poke_card__default`}>
+        <div className={`poke_card poke_card__default`} onClick={handleClick}>
           <h2>{titleCase(name)}</h2>
           <img src={photoUrl} alt={name} />
           <div className="poke_card_types__default">
@@ -24,7 +31,7 @@ const PokeCard = ({ pokeData, config = "default" }) => {
       );
     } else {
       return (
-        <div className={`poke_card poke_card__list`}>
+        <div className={`poke_card poke_card__list`} onClick={handleClick}>
           <div className="flex_row">
             <img src={photoUrl} alt={name} />
             <h3>{titleCase(name)}</h3>

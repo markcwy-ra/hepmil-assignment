@@ -5,6 +5,7 @@
   padding: var(--card-padding);
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
 .poke_card__default {

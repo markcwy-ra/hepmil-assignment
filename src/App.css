@@ -83,7 +83,7 @@ h5 {
 
 input {
   padding: var(--element-padding);
-  border: none;
+  border: 1px solid black;
   outline: none;
   border-radius: 5px;
   text-align: center;

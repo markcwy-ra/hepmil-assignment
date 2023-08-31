@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 // ----- Pages ----- //
 
@@ -10,6 +10,7 @@ import FavouritesPage from "./Pages/FavouritesPage/FavouritesPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import SignUpPage from "./Pages/SignUpPage/SignUpPage";
 import MainOutlet from "./Outlets/MainOutlet";
+import PokemonPage from "./Pages/PokemonPage/PokemonPage";
 
 // ---------- //
 
@@ -23,6 +24,10 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/favourites" element={<FavouritesPage />} />
+          <Route path="/pokemon">
+            <Route index element={<Navigate to="/search" />} />
+            <Route path=":pokeName" element={<PokemonPage />} />
+          </Route>
         </Route>
       </Route>
     </Routes>

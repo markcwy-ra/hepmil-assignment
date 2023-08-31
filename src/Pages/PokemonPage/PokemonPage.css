@@ -1,0 +1,25 @@
+.pokemon_page {
+  padding: 0 var(--content-padding) var(--content-padding);
+  flex: 1;
+  width: 100%;
+  overflow: auto;
+  max-width: 600px;
+  margin: auto;
+  gap: var(--content-padding);
+}
+
+.pokemon_page img {
+  width: 100%;
+  max-width: 300px;
+}
+
+.poke_page_types__list {
+  display: flex;
+  gap: var(--tag-padding);
+}
+
+.pokemon__ability {
+  border: 1px solid black;
+  padding: var(--tag-padding) calc(var(--tag-padding) * 2);
+  border-radius: 10px;
+}

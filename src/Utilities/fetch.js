@@ -13,6 +13,26 @@ export const fetchPokemon = async (query) => {
   };
 };
 
+export const fetchFullPokemon = async (query) => {
+  const response = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon/${query}`
+  );
+  const moreData = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon-species/${response.data.species.name}`
+  );
+  return {
+    pokeFullData: {
+      ...response.data,
+      flavor_text: moreData.data.flavor_text_entries[0].flavor_text,
+    },
+    pokeData: {
+      name: response.data.name,
+      photoUrl: response.data.sprites.front_default,
+      types: response.data.types,
+    },
+  };
+};
+
 export const fetchPokemonSpecies = async (query) => {
   const response = await axios.get(
     `https://pokeapi.co/api/v2/pokemon-species/${query}`
