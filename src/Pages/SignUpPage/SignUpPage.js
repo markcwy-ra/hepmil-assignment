@@ -141,7 +141,7 @@ const SignUpPage = () => {
       </form>
       <div className="flex_column">
         <p>Already have an account?</p>
-        <button onClick={() => navigate("/signup")} id="signup">
+        <button onClick={() => navigate("/login")} id="login">
           <h5>Login</h5>
         </button>
       </div>
