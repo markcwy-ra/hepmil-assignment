@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../Outlets/MainOutlet";
 import { useNavigate } from "react-router-dom";
+import "./NavBar.css";
 
 const NavBar = () => {
   const { user } = useContext(UserContext);
@@ -16,11 +17,11 @@ const NavBar = () => {
   };
 
   return (
-    <div>
+    <div className="navbar">
       <h3 onClick={handleNavigate} id="home">
         PokeFaves
       </h3>
-      <div>
+      <div className="navbar__links">
         <h4 onClick={handleNavigate} id="search">
           Search
         </h4>

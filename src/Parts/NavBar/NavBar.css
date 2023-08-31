@@ -1,0 +1,14 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--content-padding);
+  width: 100%;
+  background-color: white;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 15px;
+  height: 100%;
+  align-items: center;
+}

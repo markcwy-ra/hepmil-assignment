@@ -1,0 +1,25 @@
+.poke_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #c9c7c7;
+  padding: var(--content-padding);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.poke_card__default {
+  width: 280px;
+  gap: 15px;
+  aspect-ratio: 1;
+}
+
+.poke_card__default img {
+  width: 120px;
+}
+
+.poke_card__types {
+  display: flex;
+  gap: 5px;
+}

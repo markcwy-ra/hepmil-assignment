@@ -12,6 +12,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { UserContext } from "../../Outlets/MainOutlet";
 import signUpReducer from "../../Reducers/signUpReducer";
 import { onlyAlphaNumeric } from "../../utils";
+import ErrorPill from "../../Pieces/ErrorPill/ErrorPill";
 
 // ----- Initial Declarations ----- //
 
@@ -126,7 +127,7 @@ const SignUpPage = () => {
           placeholder="Re-enter password"
         />
         <button onClick={handleSubmit}>Sign Up</button>
-        {errorMessage ? <h3>{errorMessage}</h3> : <></>}
+        {errorMessage ? <ErrorPill errorMessage={errorMessage} /> : <></>}
       </form>
     </div>
   );

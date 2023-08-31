@@ -6,7 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 // ----- Initial Declarations ----- //
 
-const userObj = {
+const emptyUser = {
   uid: null,
   email: null,
   username: null,
@@ -17,7 +17,7 @@ const UserContext = React.createContext(null);
 // ----- //
 
 const MainOutlet = () => {
-  const [user, setUser] = useState(userObj);
+  const [user, setUser] = useState(emptyUser);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -33,12 +33,14 @@ const MainOutlet = () => {
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      <NavBar />
-      <Outlet />
+      <div className="App">
+        <NavBar />
+        <Outlet />
+      </div>
     </UserContext.Provider>
   );
 };
 
 export default MainOutlet;
 
-export { UserContext };
+export { UserContext, emptyUser };
